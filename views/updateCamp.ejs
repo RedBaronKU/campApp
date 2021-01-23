@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreateCamp</title>
+</head>
+<body>
+    <% for(let camp of campList){ %> 
+    <form  method="POST" action="/campground/edit/<%=camp._id%>?_method=PUT">
+        
+            <input type="text" name="location" value="<%=camp.location%>">
+            <input type="text" name="title" value="<%=camp.title%>">
+            <button> Edit</button>
+        
+    </form><% } %> 
+</body>
+</html>
