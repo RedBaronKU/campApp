@@ -9,9 +9,7 @@
     <ul>
         <% for (let camps of campList) {%>
         <li><a href="campdisplay/<%=camps._id%>"><%= camps.title  %> </a>located at <%=camps.location %> </li>
-        <p>
-            <a href="/campground/<%=camps._id %>/edit">Click to edit</a>
-        </p>
+        
         <% } %> 
     </ul>
 </body>
