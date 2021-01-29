@@ -7,6 +7,9 @@ var schema=mongoose.Schema;
 var campSchema=new mongoose.Schema({
     title:String,
     location:String,
+    image: String,
+    Price: Number,
+    description: String
 })
 
 module.exports=mongoose.model('Campground',campSchema);
