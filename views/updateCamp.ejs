@@ -1,9 +1,21 @@
 <% layout('../pageTempelate/index') -%>
     <% for(let camp of campList){ %> 
     <form  method="POST" action="/campground/edit/<%=camp._id%>?_method=PUT">
-        
-            <input type="text" name="location" value="<%=camp.location%>">
-            <input type="text" name="title" value="<%=camp.title%>">
-            <button> Edit</button>
-        
-    </form><% } %> 
+        <div class="row">
+                <h1 class="text-center">New Camp</h1>
+                <div class="col-md-6 offset-3">
+                    <form action="/campground" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label" for="title">Title</label>
+                            <input class="form-control" id="title" type="text" value="<%=camp.title%>" name="title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" value="<%=camp.location%>" name="location">
+                        </div>
+                        <button class="btn-primary"> Edit</button>
+                    </form>
+                </div>
+        </div>
+     </form>
+    <% } %> 
