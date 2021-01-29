@@ -1,7 +1,22 @@
 <% layout('../pageTempelate/index') -%>
-    <ul>
-        <% for (let camps of campList) {%>
-        <li><a href="campdisplay/<%=camps._id%>"><%= camps.title  %> </a>located at <%=camps.location %> </li>
-        
-        <% } %> 
-    </ul>
+
+<% for (let camp of campList) {%>
+
+<div class="card" mb-3>
+    <div class="row">
+    <div class="col-md-4">
+        <img class="img-fluid" src="<%= camp.image %>">
+    </div>
+    <div class="col-md-8">    
+        <div class="card-body">
+            <h5 class="card-title"><a href="campdisplay/<%=camp._id%>"><%= camp.title  %></a></h5>
+            <h2><%=camp.location%></h2>
+            
+            <p class="card-text"><%=camp.description%></p>
+            <p class="card-text">$ <%=camp.Price%></p>
+        </div>
+    </div>
+    
+</div>
+
+<% } %> 
