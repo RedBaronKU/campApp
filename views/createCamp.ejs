@@ -1,6 +1,17 @@
 <% layout('../pageTempelate/index') -%>
-    <form action="/campground" method="POST">
-        <input type="text" name="location" placeholder="Location">
-        <input type="text" name="title" placeholder="title">
-        <button> Create new</button>
-    </form>
+<div class="row">
+    <h1 class="text-center">New Camp</h1>
+    <div class="col-md-6 offset-3">
+        <form action="/campground" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" id="title" type="text" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" name="location">
+            </div>
+            <button class="btn-primary"> Create new</button>
+        </form>
+    </div>
+</div>
