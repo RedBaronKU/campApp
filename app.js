@@ -2,12 +2,14 @@ const { urlencoded } = require('express');
 const express=require('express');
 const mongoose=require('mongoose');
 const methodOverride=require('method-override');
+const ejsMate=require('ejs-mate');
 
 const Campground = require('./models/campground');
 
 const app=express();
 
 app.set('view engine','ejs');
+app.engine('ejs', ejsMate);
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:true}))
 
