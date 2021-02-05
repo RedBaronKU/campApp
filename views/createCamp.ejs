@@ -5,23 +5,23 @@
         <form action="/campground" method="POST" novalidate class="needs-validation"> 
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input class="form-control" id="title" type="text" name="title" required> 
+                <input class="form-control" id="title" type="text" name="campground[title]" required> 
             </div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                <input type="text" class="form-control" id="location" name="location" required>
+                <input type="text" class="form-control" id="location" name="campground[location]" required>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image URL</label>
-                <input type="text" class="form-control" id="image" name="image" required>
+                <input type="text" class="form-control" id="image" name="campground[image]" required>
             </div>
             <div class="mb-3">
                 <label for="Price" class="form-label">Price</label>
-                <input type="text" class="form-control" id="Price" name="Price" required>
+                <input type="text" class="form-control" id="Price" name="campground[Price]" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+                <textarea type="text" class="form-control" id="description" name="campground[description]" required></textarea>
             </div>
             <button class="btn-primary col-12"> Create new</button>
         </form>
