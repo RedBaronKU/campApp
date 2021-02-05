@@ -1,5 +1,6 @@
 const { urlencoded } = require('express');
 const express=require('express');
+const {campgroundSchema}=require('./schema');
 const mongoose=require('mongoose');
 const methodOverride=require('method-override');
 const ejsMate=require('ejs-mate');
@@ -32,15 +33,29 @@ app.get('/campdisplay/:id',catchAsync(async(req,res)=>{
     res.render('campDisplay.ejs',{campList})
 }))
 
+//validate(Serverside)
+const validateCampground=(req,res,next)=>
+{
+    
+    const {error}=campgroundSchema.validate(req.body);
+    if(error)
+    {
+        const msg=error.details.map(el=>el.message).join(',')
+        throw new expressError(400,msg);
+    }
+    else{
+        next();
+    }
+}
 
 //To Create new Camp
 app.get('/campground/new',(req,res)=>{
     res.render('createCamp.ejs')
 })
 
-app.post('/campground',catchAsync(async(req,res,next)=>{
-        if(!req.body){throw new expressError(400,'Invalid Data')};
-        const campground=new Campground(req.body);
+app.post('/campground',validateCampground,catchAsync(async(req,res,next)=>{
+        //if(!req.body){throw new expressError(400,'Invalid Data')};
+        const campground=new Campground(req.body.campground);
         await campground.save();
         let campList=[];
         campList.push(campground);
@@ -62,9 +77,11 @@ app.get('/campground/:id/edit',catchAsync(async(req,res)=>{
     res.render('updateCamp.ejs',{campList})
 }))
 
-app.put('/campground/edit/:id',catchAsync(async(req,res)=>{
+app.put('/campground/edit/:id',validateCampground,catchAsync(async(req,res)=>{
+    
     const {id}=req.params;
-    await Campground.findByIdAndUpdate(id,req.body);
+    const campground=req.body;
+    await Campground.findByIdAndUpdate(id,req.body.campground);
     const campList=await Campground.find({_id : req.params.id});
     res.render('campDisplay.ejs',{campList})
 }))
@@ -76,8 +93,8 @@ app.all('*',(req,res,next)=>
     //next(new expressError(404,"Page Not Found"));
 })
 app.use((err,req,res,next)=>{
-    console.log(err);
-    res.send("Something went wrong");
+    res.render('errorOther',{err});
+   
 })
 
 
