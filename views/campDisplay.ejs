@@ -1,26 +1,45 @@
 <% layout('../pageTempelate/index') -%>
-<% for(let camp of campList){ %> 
-<div class="card mb-3">
-    <div class="row">
-    <div class="col-12">
-        <img class="img-fluid" src="<%= camp.image %>">
+
+<div class="card mb-3 col-8 offset-2">
+    <img class="card-img-top img-fluid" src="<%= camp.image %>">
+    <div class="card-body">
+        <h5 class="card-title"><%=camp.title %></h5>
+        <p class="card-title"><h2><%=camp.location%></h2></p>
+        <p class="card-text"><%=camp.description%></p>
     </div>
-    <div class="col-md-12">    
-        <div class="card-body">
-            <h5 class="card-title"><%=camp.title %> </h5>
-            <h2><%=camp.location%></h2>
-            
-            <p class="card-text"><%=camp.description%></p>
-            <p class="card-text"><%=camp.Price%></p>
-            
-            <form method="POST" action="/campground/<%=camp._id%>?_method=DELETE">
-                <button class="btn-danger">Delete</button>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">$ <%=camp.Price%>/night</li>
+        <li class="list-group-item">
+            <form method="GET" action="/campground/<%=camp._id %>/edit">
+                <button class="btn-info col-12">Edit</button>
             </form>
-        </div>
+        </li>
+    </ul>
+    <div class="card-body">
+        <form method="POST" action="/campground/<%=camp._id%>?_method=DELETE">
+            <button class="btn-danger col-12">Delete</button>
+        </form>
     </div>
-    <p class="my-2">
-        <a href="/campground/<%=camp._id %>/edit">Click to edit</a>
-    </p>
-    <% } %> 
-    </div>    
 </div>
+
+<div class="form-group shadow-textarea col-8 offset-2">
+    <form action="/campground/addreview/<%=camp.id%>" method="POST">
+        <label for="exampleFormControlTextarea6" class="text-muted">Write a review</label>
+        <textarea class="form-control z-depth-1 mt-2" id="exampleFormControlTextarea6" name="review[reviewBody]" rows="3" placeholder="Write something here..."></textarea>
+        <label class="form-label" for="customRange2">Example range</label>
+        <div class="range">
+            <input type="range" class="form-range" min="0" max="5" id="customRange2" name="review[Rating]"/>
+        </div> 
+    <button class="btn btn-success my-2">Submit review</button>
+    </form>
+</div>
+<ul class="list-group list-group-flush col-8 offset-2">
+    <% for(let reviews of camp.reviews){ %>
+
+    <li class="list-group-item"> <%= reviews.Rating%> Star <%=reviews.reviewBody%> </li>
+
+    <% } %>
+</ul>
+
+ 
+

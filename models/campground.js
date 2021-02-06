@@ -9,7 +9,12 @@ var campSchema=new mongoose.Schema({
     location:String,
     image: String,
     Price: Number,
-    description: String
+    description: String,
+    reviews: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
 })
 
 module.exports=mongoose.model('Campground',campSchema);
