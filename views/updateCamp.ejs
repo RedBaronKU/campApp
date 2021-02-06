@@ -1,5 +1,5 @@
 <% layout('../pageTempelate/index') -%>
-<% for(let camp of campList){ %> 
+
 <form  method="POST" action="/campground/edit/<%=camp._id%>?_method=PUT" novalidate>
     <div class="row">
             <h1 class="text-center">New Camp</h1>
@@ -30,7 +30,7 @@
             </div>
     </div>
 </form>
-<% } %> 
+
 <script>
     (function () {
     'use strict'
